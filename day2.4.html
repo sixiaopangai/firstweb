@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2.4 - 效能飞跃：SSH Config 与密钥对实战</title>
+    <link rel="icon" href="https://yushenchuanmei.top/favicon.ico" type="image/x-icon">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 40px 20px; background-color: #f0f2f5; }
+        .log-container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        
+        .header { display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #3498db; padding-bottom: 15px; margin-bottom: 25px; }
+        .back-link { text-decoration: none; color: #3498db; font-weight: bold; font-size: 0.9em; }
+        h1 { color: #2c3e50; margin: 0; font-size: 1.5em; }
+
+        .section { margin-bottom: 30px; }
+        .section h2 { font-size: 1.2em; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 15px; }
+        
+        .status-box { padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 0.9em; }
+        .info { background: #ebf8ff; border: 1px solid #90cdf4; color: #2c5282; }
+        .success { background: #f0fff4; border: 1px solid #9ae6b4; color: #276745; }
+
+        pre { background: #2d3436; color: #dfe6e9; padding: 15px; border-radius: 6px; overflow-x: auto; font-size: 0.85em; }
+        code { font-family: 'Consolas', monospace; }
+        
+        .footer { text-align: center; margin-top: 40px; color: #999; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+    <div class="log-container">
+        <div class="header">
+            <h1>🛡️ 效能与安全：SSH 登录终极优化</h1>
+            <a href="index.html" class="back-link">← 返回主页</a>
+        </div>
+
+        <div class="section">
+            <h2>1. DNS 映射：赋予 VPS 语义化地址</h2>
+            <p>为了摆脱枯燥的 IP 地址（xx.xx.xx.xx），我在 Cloudflare 中配置了 <b>A 记录</b>，将 <code>vps</code> 指向了固定 IP。</p>
+            <div class="status-box info">
+                <strong>关键点：</strong> 必须使用“仅 DNS”（DNS only）模式，因为 Cloudflare 代理（CDN）无法转发 22 端口的 SSH 流量。
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. 快捷别名：本地 Config 配置</h2>
+            <p>在本地 Acer Predator 笔记本的 <code>~/.ssh/config</code> 文件中，我创建了快捷映射：</p>
+            <pre><code>Host lhy-vps
+    HostName vps.yushenchuanmei.top
+    User root
+    Port 22</code></pre>
+            <p>从此，一行简单的 <code>ssh lhy-vps</code> 即可代替冗长的命令。</p>
+        </div>
+
+        <div class="section">
+            <h2>3. 密钥对生成：非对称加密实战</h2>
+            <p>拒绝在配置文件中明文存储密码。我利用 <b>4096 位 RSA 算法</b> 生成了密钥对：</p>
+            <pre><code>ssh-keygen -t rsa -b 4096</code></pre>
+            <p>私钥 <code>id_rsa</code> 稳坐本地，公钥 <code>id_rsa.pub</code> 部署至服务器 <code>authorized_keys</code>。</p>
+        </div>
+
+        <div class="section">
+            <h2>4. 最终成果</h2>
+            <div class="status-box success">
+                <strong>达成：</strong> 实现了真正的“秒进”服务器。安全性上，密钥认证远超传统密码；效率上，配合别名映射，运维体验得到了质的飞跃。
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>记录日期: 2025年12月30日 | 执行环境: Acer Predator & Ubuntu VPS</p>
+        </div>
+    </div>
+</body>
+</html>
