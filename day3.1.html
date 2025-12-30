@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Web 项目文件夹系统规划</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
+        header { background: #2c3e50; color: #fff; padding: 20px; border-radius: 8px; text-align: center; margin-bottom: 30px; }
+        h2 { color: #2c3e50; border-left: 5px solid #3498db; padding-left: 10px; margin-top: 30px; }
+        .container { background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        code { background: #f8f8f8; border: 1px solid #ddd; padding: 2px 5px; border-radius: 4px; font-family: Consolas, monospace; }
+        pre { background: #2d3436; color: #dfe6e9; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 14px; }
+        .directory-tree { color: #55efc4; }
+        .ide-tag { display: inline-block; padding: 3px 8px; border-radius: 12px; font-size: 12px; margin-right: 5px; font-weight: bold; }
+        .idea { background: #fb3e3e; color: white; }
+        .cursor { background: #3d3d3d; color: white; }
+        .tip { background: #e1f5fe; border-left: 5px solid #03a9f4; padding: 15px; margin: 20px 0; border-radius: 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #ddd; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Java Web 开发工作流 & 文件夹规划</h1>
+    <p>构建高效、整洁、易于 AI 协作的开发环境</p>
+</header>
+
+<div class="container">
+    <h2>1. 物理位置与分层结构</h2>
+    <p>统一存放路径：<code>D:\Workspace\Java-Web\</code></p>
+    <pre class="directory-tree">
+D:\Workspace\Java-Web\
+├── 01_Learning/           # 练习项目、Demo、实验课作业
+├── 02_Active/             # 正在进行的核心开发项目
+├── 03_Templates/          # 存放脚本、README模板、脚手架
+│   ├── clean_project.py   # Python 清理核心
+│   └── 一键清理.bat        # Windows 快捷工具
+└── 04_Archive/            # 已清理垃圾后的“瘦身”归档项目</pre>
+
+    <h2>2. 单个项目内部规范</h2>
+    <p>推荐采用前后端分离结构，方便多个 AI IDE 协同工作：</p>
+    <table>
+        <tr>
+            <th>文件夹</th>
+            <th>职责</th>
+            <th>推荐 IDE / 工具</th>
+        </tr>
+        <tr>
+            <td><code>backend/</code></td>
+            <td>Java 源码、Maven 配置</td>
+            <td><span class="ide-tag idea">IntelliJ IDEA</span></td>
+        </tr>
+        <tr>
+            <td><code>frontend/</code></td>
+            <td>Vue/React 源码、Node 依赖</td>
+            <td><span class="ide-tag cursor">Cursor / Trae</span></td>
+        </tr>
+        <tr>
+            <td><code>sql/</code></td>
+            <td>数据库初始化及变更脚本</td>
+            <td>Navicat / Datagrip</td>
+        </tr>
+        <tr>
+            <td><code>docs/</code></td>
+            <td>项目设计文档、接口定义</td>
+            <td>Typora / Obsidian</td>
+        </tr>
+    </table>
+
+    <h2>3. 自动化清理与归档流</h2>
+    <div class="tip">
+        <strong>归档秘籍：</strong> 在将项目移入 <code>04_Archive</code> 前，务必执行清理脚本。将clean_project.py和一键清理.bat放入想要清理的文件夹下，执行一键清理.bat。执行完即可把项目文件夹放入<code>04_Archive</code>
+    </div>
+    <p>运行脚本将自动删除以下冗余内容，节省 SSD 空间：</p>
+    <ul>
+        <li><code>target/</code> (Java 编译产物)</li>
+        <li><code>node_modules/</code> (前端巨量依赖)</li>
+        <li><code>.idea/</code> & <code>.vscode/</code> (本地 IDE 索引)</li>
+        <li><code>dist/</code> & <code>build/</code> (构建打包结果)</li>
+    </ul>
+
+    <h2>4. 恢复运行命令</h2>
+    <p>当需要从归档中重启项目时，在对应目录下执行：</p>
+    <pre>
+# 后端恢复 (backend/)
+mvn clean install
+
+# 前端恢复 (frontend/)
+npm install
+npm run dev</pre>
+</div>
+
+<footer style="text-align: center; margin-top: 40px; color: #7f8c8d; font-size: 0.9em;">
+    <p>© 2025 Java Web 项目规划 · 保持代码优雅</p>
+</footer>
+
+</body>
+</html>
