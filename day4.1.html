@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4.1 - 掠夺者实战：全栈闭环与效率工具链</title>
+    <style>
+        /* 极客冰蓝 - 掠夺者配色方案 */
+        :root {
+            --bg-color: #0f172a;        /* 深海蓝黑背景 */
+            --card-bg: #1e293b;         /* 灰蓝卡片背景 */
+            --primary-blue: #38bdf8;    /* 冰核蓝 */
+            --accent-cyan: #7dd3fc;     /* 亮青强调色 */
+            --text-main: #f1f5f9;       /* 极浅蓝文字 */
+            --text-dim: #94a3b8;        /* 钢灰文字 */
+            --code-border: #0ea5e9;     /* 代码边框蓝 */
+            --warning-amber: #fbbf24;   /* 预警琥珀 */
+            --success-cyan: #22d3ee;    /* 成功青 */
+        }
+
+        body {
+            font-family: 'Cascadia Code', 'Fira Code', 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
+            background: var(--bg-color);
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 50px 24px;
+        }
+
+        .post-header {
+            border-bottom: 2px solid #334155;
+            padding-bottom: 24px;
+            margin-bottom: 40px;
+        }
+
+        .post-title {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin: 0 0 12px 0;
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+        }
+
+        .post-date {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .content-section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            color: var(--accent-cyan);
+            font-size: 1.4rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::before {
+            content: ">_";
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .code-wrapper {
+            position: relative;
+            margin: 15px 0;
+        }
+
+        pre {
+            background: #000000;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            color: var(--text-main);
+            border: 1px solid var(--code-border);
+            font-family: 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-blue);
+            color: #000;
+        }
+
+        .status-box {
+            background: rgba(251, 191, 36, 0.05);
+            border: 1px solid var(--warning-amber);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .status-title {
+            color: var(--warning-amber);
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tag {
+            background: #334155;
+            color: var(--accent-cyan);
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            border: 1px solid #475569;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 40px;
+            color: var(--primary-blue);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            text-shadow: 0 0 10px var(--primary-blue);
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="post-header">
+        <h1 class="post-title">Day 4.1：学生管理系统落地与效率进阶</h1>
+        <div class="post-date">
+            <span>📅 2025年12月31日</span>
+            <span class="tag">Full-Stack</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">Predator-Dev</span>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>项目进展：前后端架构初步落成</h2>
+        <p>今日成功完成了“学生管理系统”的基础前后端创建：</p>
+        <ul>
+            <li><b>后端：</b>Node.js 服务端已跑通，MySQL 数据库已通过 <code>init.sql</code> 完成初始化。</li>
+            <li><b>前端：</b>基于 Vite + Vue 的脚手架已启动。</li>
+        </ul>
+        <div class="status-box">
+            <div class="status-title">⚠️ 待修复与完善事项</div>
+            <p style="margin: 0; font-size: 0.9rem; color: #e2e8f0;">
+                - <b>权限系统：</b>RBAC 逻辑还需在业务层进行精细化拦截。<br>
+                - <b>异常捕获：</b>后端对于数据库连接断开的重试机制待实现。<br>
+                - <b>UI 交互：</b>前端表单验证需增加中文错误提示。
+            </p>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>效率笔记：一秒开终端与环境调优</h2>
+        <p>在 <b>Acer Predator</b> 上开发时，频繁切换目录非常耗时。掌握了以下“黑科技”：</p>
+        
+        <span style="font-size: 0.85rem; color: var(--text-dim);"># 方法：资源管理器地址栏大法</span>
+        <div class="code-wrapper">
+            <pre><code>Alt + D (定位地址栏) -> 输入 'cmd' -> Enter</code></pre>
+        </div>
+
+        <p>针对终端显示乱码问题，每次新开终端后执行如下配置：</p>
+        <div class="code-wrapper">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <pre><code># 切换代码页为 UTF-8
+chcp 65001
+
+# MySQL 会话级乱码修复
+SET NAMES utf8mb4;</code></pre>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Git 进阶：如何 Fork 并下载他人仓库</h2>
+        <p>为了参考优秀的权限设计，学习了复刻他人代码的流程：</p>
+        <ol>
+            <li>在 GitHub 网页端点击 <b>Fork</b>，将项目复刻到 <code>sixiaopangai</code> 名下。</li>
+            <li>使用 HTTPS 或 SSH 克隆到本地工作目录：</li>
+        </ol>
+        <div class="code-wrapper">
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            <pre><code>git clone https://github.com/sixiaopangai/other-repo.git
+npm install  # 进入目录后第一时间安装依赖</code></pre>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-link">← 返回索引页</a>
+
+    <script>
+        function copyCode(button) {
+            const pre = button.nextElementSibling;
+            const text = pre.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerText;
+                button.innerText = 'Copied!';
+                button.style.background = 'var(--success-cyan)';
+                button.style.color = '#000';
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.style.background = 'rgba(56, 189, 248, 0.1)';
+                    button.style.color = 'var(--primary-blue)';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
