@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5.1 - 学生管理系统正式竣工</title>
+    <style>
+        /* 极客岩浆 - 掠夺者性能模式配色方案 */
+        :root {
+            --bg-color: #1a0505;        /* 深焦黑红背景 */
+            --card-bg: #2d0a0a;         /* 炭黑红卡片背景 */
+            --primary-red: #ef4444;     /* 熔岩红 */
+            --accent-orange: #f59e0b;   /* 琥珀橙强调色 */
+            --text-main: #fee2e2;       /* 浅粉白文字 */
+            --text-dim: #f87171;        /* 灰红文字 */
+            --code-border: #991b1b;     /* 深红代码边框 */
+            --success-gold: #fbbf24;    /* 成功金 */
+        }
+
+        body {
+            font-family: 'Cascadia Code', 'Fira Code', 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
+            background: var(--bg-color);
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 50px 24px;
+        }
+
+        .post-header {
+            border-bottom: 2px solid #450a0a;
+            padding-bottom: 24px;
+            margin-bottom: 40px;
+        }
+
+        .post-title {
+            font-size: 2rem;
+            color: var(--primary-red);
+            margin: 0 0 12px 0;
+            text-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+        }
+
+        .post-date {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .content-section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #450a0a;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            color: var(--accent-orange);
+            font-size: 1.4rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::before {
+            content: "::";
+            color: var(--primary-red);
+        }
+
+        .project-status {
+            background: linear-gradient(90deg, #450a0a 0%, #7f1d1d 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid var(--primary-red);
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .success-box {
+            background: rgba(251, 191, 36, 0.05);
+            border: 1px solid var(--success-gold);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .tag {
+            background: #450a0a;
+            color: var(--accent-orange);
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            border: 1px solid #7f1d1d;
+        }
+
+        pre {
+            background: #000000;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            color: #fb7185;
+            border: 1px solid var(--code-border);
+            font-family: 'Consolas', monospace;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 40px;
+            color: var(--primary-red);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--accent-orange);
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="post-header">
+        <h1 class="post-title">Day 5.1：学生管理系统正式竣工 - Debug 完美收官</h1>
+        <div class="post-date">
+            <span>📅 2026年1月2日</span>
+            <span class="tag">Release-Candidate</span>
+            <span class="tag">Bug-Zero</span>
+            <span class="tag">Predator-Dev</span>
+        </div>
+    </div>
+
+    <div class="project-status">
+        <h3 style="margin: 0; color: #fff; font-size: 1.5rem;">🎯 任务达成：100% SUCCESS</h3>
+        <p style="margin: 5px 0 0 0; color: var(--success-gold);">学生管理系统全模块调试完成，所有已知 Bug 已被消灭。</p>
+    </div>
+
+    <div class="content-section">
+        <h2>里程碑：从调试到正式交付</h2>
+        <p>在经过多轮针对后端权限校验和前端交互的优化后，项目已进入稳定运行阶段：</p>
+        <ul>
+            <li><b>逻辑完备：</b> RBAC 权限拦截准确，管理员与各级角色操作互不干扰。</li>
+            <li><b>稳定性：</b> 完成了压力下的数据库连接池调优，无任何 Crash 报错。</li>
+            <li><b>零 Bug 运行：</b> 经过全面走测，系统流程已实现全闭环。</li>
+        </ul>
+        
+    </div>
+
+    <div class="content-section">
+        <h2>环境大捷：UTF-8 与 SSH 的联合胜利</h2>
+        <p>项目的成功离不开底层环境的彻底修复。在 <b>Acer Predator</b> 上的配置已达巅峰状态：</p>
+        <div class="success-box">
+            <p style="margin: 0; color: var(--success-gold);">
+                <b>✔ 编码胜利：</b> 全局 UTF-8 开启后，MySQL 查询权限表再无乱码。<br>
+                <b>✔ 推送自由：</b> SSH 密钥信任建立，彻底告别 HTTPS 代理报错，实现一秒推送云端。
+            </p>
+        </div>
+        
+    </div>
+
+    <div class="content-section">
+        <h2>工程总结：双远程库备份策略</h2>
+        <p>目前的仓库配置为项目安全提供了双重保障：</p>
+        <pre><code># 默认 SSH 推送路径 (origin)
+git push origin main
+
+# 备用 HTTPS 推送路径 (https-origin)
+git push https-origin main</code></pre>
+    </div>
+
+    <a href="index.html" class="back-link">← 返回索引页</a>
+
+    <script>
+        function copyCode(button) {
+            const pre = button.nextElementSibling;
+            const text = pre.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerText;
+                button.innerText = 'Copied!';
+                button.style.background = 'var(--success-gold)';
+                button.style.color = '#000';
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.style.background = 'rgba(239, 68, 68, 0.1)';
+                    button.style.color = 'var(--primary-red)';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
